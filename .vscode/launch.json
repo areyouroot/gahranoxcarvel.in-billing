@@ -1,0 +1,39 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Backend",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/GCBiller/backend/src/server.js",
+            "cwd": "${workspaceFolder}/GCBiller/backend",
+            "envFile": "${workspaceFolder}/GCBiller/backend/.env",
+            "console": "integratedTerminal",
+            "outFiles": [
+                "${workspaceFolder}/GCBiller/backend/dist/**/*.js"
+            ]
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Frontend",
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceFolder}/GCBiller/frontend",
+            "sourceMapPathOverrides": {
+                "webpack:/*": "${webRoot}/*"
+            },
+            "preLaunchTask": "npm: start - frontend",
+            "postDebugTask": "Kill Angular Server"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Full Stack: Frontend + Backend",
+            "configurations": ["Launch Backend", "Launch Frontend"],
+            "stopAll": true
+        }
+    ]
+}

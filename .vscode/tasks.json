@@ -1,0 +1,36 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "npm",
+            "script": "start",
+            "path": "GCBiller/frontend",
+            "isBackground": true,
+            "label": "npm: start - frontend",
+            "detail": "ng serve",
+            "problemMatcher": {
+                "owner": "typescript",
+                "pattern": "$tsc",
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".",
+                    "endsPattern": "✓ Compiled successfully."
+                }
+            }
+        },
+        {
+            "label": "Kill Angular Server",
+            "type": "shell",
+            "command": "echo ${input:terminate}",
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "terminate",
+            "type": "command",
+            "command": "workbench.action.tasks.terminate",
+            "args": "npm: start - frontend"
+        }
+    ]
+}
